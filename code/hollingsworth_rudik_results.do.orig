@@ -1,0 +1,101 @@
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+// HOLLINGSWORTH AND RUDIK (hollinal@indiana.edu, irudik@cornell.edu)
+// EXTERNAL IMPACTS OF LOCAL ENERGY POLICY: THE CASE OF RENEWABLE PORTFOLIO STANDARDS
+// JOURNAL OF THE ASSOCIATION OF ENVIRONMENTAL AND RESOURCE ECONOMISTS
+// VERSION: JANUARY 2018
+
+// DESCRIPTION:
+// THIS FILE RUNS THE SCRIPTS TO REPLICATE OUR TABLES AND FIGURES IN THE PAPER
+// AND THE ONLINE APPENDIX
+
+// INSTRUCTIONS:
+// RUN THIS FILE TO REPLICATE ALL RESULTS AFTER BUILDING THE MAIN DATASET (OR 
+// USING THE PRE-COMPILED ONE THAT IS PROVIDED)
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// NOTES: Figures 1, 2, 5, A2 were constructed in R.
+// STILL TO ADD: FIGURES A3-A6, ALL MAPS
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+clear all
+
+// Install Stata Packages
+local install_stata_packages 0 // Set to 1 if you need to install or update packages
+
+// Install Packages if needed, if not, make a note of this
+if `install_stata_packages' {
+	ssc install ivreg2, replace all
+	ssc install reghdfe, replace all
+	ssc install ranktest, replace all
+	ssc install carryforward, replace all
+	ssc install estout, replace all
+	ssc install rsource, replace all
+	ssc install spmap, replace all
+	ssc install shp2dta, replace all
+	ssc install tuples, replace all
+	ssc install blindschemes, replace all
+	set scheme plotplainblind
+}
+else  {
+	di "All packages up-to-date"
+	set scheme plotplainblind
+
+}
+// Change Font.
+graph set window fontface "Helvetica"
+// YOUR FILE PATH
+global root_path "/Users/ir229/Desktop/git/hr_recs/cleaned_code" // Root folder directory that contains the subfolders for constructing the dataset and estimation
+*global root_path "/Users/hollina/Documents/research/hollingsworth_rudik_rps/cleaned_code" // Root folder directory that contains the subfolders for constructing the dataset and estimation
+global script_path "$root_path/code" // Path for running the scripts to create tables and figures
+global results_path "$root_path/output" // Path for tables/figures output
+global data_path "$root_path/data" // Path for data
+
+////////////////////////////
+// TABLES/FIGURES
+////////////////////////////
+
+**do "$script_path/table_2.do" // Main results: Table 2
+
+*do "$script_path/table_3.do" // Remove non-parallel pre-trend states: Table 3 and Figure A1
+
+*do "$script_path/figure_3.do" // Quantity supplied vs quantity demanded for RECs: Figure 3
+
+do "$script_path/figure_6.do" // Avoided damage per REC vs RECs required to meet 
+							// 1% higher RPS, or avoided damage per 1% RPS vs
+							// percent of benefits accruing out-of-state: 
+							// Figures 6 and A14
+<<<<<<< HEAD
+	
+=======
+	exit					
+>>>>>>> 6ee017a5d62bf720b4d22eb15b76278222883d9e
+do "$script_path/table_a8.do" // Non-RPS states: Table A8
+
+do "$script_path/table_a9.do" // Placebo test: Table A9
+
+do "$script_path/table_a10.do" // Instrument: Table A10
+
+do "$script_path/table_a11.do" // Region-by-year FEs: Table A11
+
+do "$script_path/table_a12.do" // CO2 emissions test: Table A12
+
+do "$script_path/table_a13.do" // Wholesale market channel: Table A13
+
+do "$script_path/table_a14.do" // Heterogeneous plant responses: Table A14 and Figures A7-A11
+
+do "$script_path/summary_stats_full_tables.do" // Create summary statistics and full specification tables
+
+
