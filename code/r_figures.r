@@ -20,7 +20,9 @@ library(ggplot2)
 
 # Get current path for the repo
 dir_path <- dirname(rstudioapi::getSourceEditorContext()$path)
+cd(dir_pat)
 setwd(dir_path)
+setwd('..')
 
 ##Import the state level dataset. Old means old version of Stata (to be compatible with R), not an old set of data.
 data_stata  <- read.dta("data/data_for_r_figures.dta")
@@ -42,7 +44,7 @@ prim_rps <- ggplot(data_stata, aes(year, rps_primary*100)) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=.25)) +
   scale_y_continuous(breaks = c(0,10,20,30,40), limits=c(0,40)) +
   scale_x_continuous(breaks=c(1993,1997,2001,2005,2009,2013))
-ggsave(file=file.path(dir_path,"output/prim_rps.pdf"),width = 8, height = 8)
+ggsave(file="output/figure_2.pdf",width = 8, height = 8)
 
 
 ## Figure 5A
@@ -61,7 +63,7 @@ in_rps <- ggplot(data_stata, aes(year, in_state_demand_na/1e6)) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=.25)) +
   scale_y_continuous(breaks = c(0,10,20,30,40,50,60), limits=c(0,60)) +
   scale_x_continuous(breaks=c(1993,1997,2001,2005,2009,2013))
-ggsave(file=file.path(dir_path,"/output/instate_demand.pdf"),width = 8, height = 8)
+ggsave(file="output/figure_5a.pdf",width = 8, height = 8)
 
 
 ## Figure 5B
@@ -80,7 +82,7 @@ out_of_state_rec <- ggplot(data_stata, aes(year, out_state_demand_na/1e6)) +
   geom_text(data=subset(data_stata, out_state_demand_na/1e6 > 80 & year == 2013),
             aes(label=state,size=3),size=4,hjust = -.2,position="dodge") +
   scale_x_continuous(breaks=c(1993,1997,2001,2005,2009,2013))
-ggsave(file=file.path(dir_path,"/output/out_of_state_rec.pdf"),width = 8, height = 8)
+ggsave(file="output/figure_5b.pdf",width = 8, height = 8)
 
 
 ## Figure A3
@@ -96,4 +98,4 @@ ggplot(data_stata, aes(x=pred_out_state_demand_na_sys/1e6, y=out_state_demand_na
  theme(panel.border = element_rect(colour = "black", fill=NA, size=.25)) +
  scale_x_continuous(limits=c(0,130), breaks = c(0,25,50,75,100,125,150)) + 
  scale_y_continuous(limits=c(0,130), breaks = c(0,25,50,75,100,125,150))
-ggsave(file=file.path(dir_path,"/output/instrument_fit.pdf"),width = 7, height = 7)
+ggsave(file="output/figure_A3.pdf",width = 7, height = 7)
