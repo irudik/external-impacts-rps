@@ -85,6 +85,7 @@ out_of_state_rec <- ggplot(data_stata, aes(year, out_state_demand_na/1e6)) +
             aes(label=state,size=3),size=4,hjust = -.2,position="dodge") +
   scale_x_continuous(breaks=c(1993,1997,2001,2005,2009,2013))
 ggsave(file="output/figure_5b.pdf",width = 8, height = 8)
+ggsave(file="output/figure_5b.png",width = 8, height = 8)
 
 
 ## Figure A3
