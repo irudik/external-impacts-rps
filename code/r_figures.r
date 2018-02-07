@@ -15,6 +15,8 @@
 ################################################################################################
 
 # Libraries
+install.packages('foreign')
+install.packages('ggplot2')
 library(foreign)
 library(ggplot2)
 
