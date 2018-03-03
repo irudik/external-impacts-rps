@@ -25,17 +25,26 @@
 
 clear all
 
-/////////////////////////
-/////////////////////////
+
+////////////////////////////////////
+////////////////////////////////////
 // USER OPTIONS 
+////////////////////////////////////
+////////////////////////////////////
+
 // Root folder directory that contains the subfolders for constructing the dataset and estimation
 global root_path "/Users/ir229/Desktop/git/external-impacts-rps" 
 // Install Stata Packages
 global install_stata_packages 0 // Set to 1 if you need to install or update packages
-/////////////////////////
-/////////////////////////
 
-// Install Packages if needed, if not, make a note of this
+
+////////////////////////////////////
+////////////////////////////////////
+// SET UP PACKAGES, PLOTS, PATHS
+////////////////////////////////////
+////////////////////////////////////
+
+// Install packages if needed
 if $install_stata_packages {
 	ssc install ivreg2, replace all
 	ssc install reghdfe, replace all
@@ -51,22 +60,23 @@ if $install_stata_packages {
 	set scheme plotplainblind
 }
 else  {
-	di "All packages up-to-date"
+	di "All packages up to date."
 	set scheme plotplainblind
 
 }
-// Change Font.
+// Change font
 graph set window fontface "Helvetica"
 
-
-*global root_path "/Users/hollinal/Documents/research/hollingsworth_rudik_rps/cleaned_code" // Root folder directory that contains the subfolders for constructing the dataset and estimation
+// Set paths
 global script_path "$root_path/code" // Path for running the scripts to create tables and figures
 global results_path "$root_path/output" // Path for tables/figures output
 global data_path "$root_path/data" // Path for data
 
-////////////////////////////
-// TABLES/FIGURES
-////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+// BUILD TABLES/FIGURES
+////////////////////////////////////
+////////////////////////////////////
 
 do "$script_path/table_1.do" // Main results: Table 1
 
@@ -89,7 +99,7 @@ do "$script_path/table_a11.do" // Region-by-year FEs: Table A11
 
 do "$script_path/table_a12.do" // CO2 emissions test: Table A12
 
-do "$script_path/table_a14.do" // Heterogeneous plant responses: Table A13 and Figures A7-A11
+do "$script_path/table_a13.do" // Heterogeneous plant responses: Table A13 and Figures A7-A11
 
 do "$script_path/summary_stats_full_tables.do" // Create summary statistics table and full specification tables: Tables A1-A7
 
