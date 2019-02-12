@@ -9,7 +9,8 @@
 <br>
 <br>
 <br>
-
+<br>
+<br>
 <p> This repository contains all files and datasets necessary to replicate figures and tables. The vast majority of the code is in Stata but some of the figures were made in R. </p>
 
 <p> There are three main folders. **code** contains the code, **data** contains the data, and **output** is where the output is stored. </p>
