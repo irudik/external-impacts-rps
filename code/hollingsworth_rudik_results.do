@@ -34,6 +34,8 @@ clear all
 
 // Root folder directory that contains the subfolders for constructing the dataset and estimation
 global root_path "/Users/ir229/Desktop/git/external-impacts-rps" 
+global root_path "$dropbox/external_impacts_rps" 
+
 // Install Stata Packages
 global install_stata_packages 0 // Set to 1 if you need to install or update packages
 
@@ -71,6 +73,7 @@ graph set window fontface "Helvetica"
 global script_path "$root_path/code" // Path for running the scripts to create tables and figures
 global results_path "$root_path/output" // Path for tables/figures output
 global data_path "$root_path/data" // Path for data
+global temp_path "$root_path/temp" // Path for temp files
 
 ////////////////////////////////////
 ////////////////////////////////////
